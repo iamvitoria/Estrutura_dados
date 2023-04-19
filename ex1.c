@@ -46,7 +46,7 @@ void imprimirMatriz(Diagonal mat) {
 // Retorna o valor da matriz diagonal na posição informada
 int consultarElemento(Diagonal mat, int linha, int coluna) {
     if (linha == coluna) {
-        return mat.v[linha-1];
+        return mat.v[linha];
     } else {
         return 0;
     }
