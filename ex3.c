@@ -13,6 +13,7 @@ typedef struct {
     int* data;
 } Matrix;
 
+//Criação da matriz
 Matrix create_matrix(int n) {
     Matrix m;
     m.n = n;
@@ -20,19 +21,23 @@ Matrix create_matrix(int n) {
     return m;
 }
 
+//liberação de espaço
 void free_matrix(Matrix* m) {
     free(m->data);
     m->data = NULL;
 }
 
+//mostra de elementos
 void set_value(Matrix* m, int row, int col, int value) {
     m->data[row * m->n + col] = value;
 }
 
+//preenchimento da matriz
 int get_value(Matrix* m, int row, int col) {
     return m->data[row * m->n + col];
 }
 
+//impressão da matriz
 void print_matrix(Matrix* m) {
     printf("\nMatriz:\n");
     for (int i = 0; i < m->n; i++) {
@@ -70,9 +75,9 @@ Node* find_violations(Matrix* m) {
     for (int i = 0; i < m->n; i++) {
         for (int j = 0; j < m->n; j++) {
             int value = get_value(m, i, j);
-            if (i == j && value != 1) {
+            if (i == j && value != 1) {//se a linha e a coluna forem iguais e diferentes de 1
                 insert_node(&violations, i, j);
-            } else if (i != j && value != 0) {
+            } else if (i != j && value != 0) {//se a linha e coluna forem diferentes e diferentes de 0
                 insert_node(&violations, i, j);
             }
         }
@@ -103,10 +108,10 @@ int main() {
         printf("\nEh uma matriz identidade\n");
     } else {
         printf("Nao eh uma matriz identidade\n");
-        printf("Violacoes:\n");
+        printf("\nViolacoes:\n");
         Node* temp = violations;
         while (temp != NULL) {
-        	printf("Elemento %d na linha %d e coluna %d\n", get_value(&m, temp->row, temp->col), temp->row, temp->col);
+        	printf("Elemento %d na linha %d e coluna %d\n", get_value(&m, temp->row, temp->col), temp->row+1, temp->col+1);
         temp = temp->next;
 	    }
 	    free_list(&violations);
