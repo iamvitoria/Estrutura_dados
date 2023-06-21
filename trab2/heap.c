@@ -2,88 +2,90 @@
 #include <stdlib.h>
 #include "heap.h"
 
-struct Heap* createHeap() {
-    struct Heap* heap = (struct Heap*)malloc(sizeof(struct Heap));
-    heap->size = 0;
+Heap* createHeap(int capacity) {
+    Heap* heap = (Heap*)malloc(sizeof(Heap));
+    heap->heap = (int*)malloc(capacity * sizeof(int));
+    heap->tail = -1;
+    heap->capacity = capacity;
     return heap;
 }
 
-void swap(int* a, int* b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+int isEmpty(Heap* heap) {
+    return heap->tail == -1;
 }
 
-void heapifyUp(struct Heap* heap, int index) {
-    int parent = (index - 1) / 2;
-    if (index > 0 && heap->elements[index] > heap->elements[parent]) {
-        swap(&heap->elements[index], &heap->elements[parent]);
-        heapifyUp(heap, parent);
+int left(int index) {
+    return 2 * index + 1;
+}
+
+int right(int index) {
+    return 2 * (index + 1);
+}
+
+int parent(int index) {
+    return (index - 1) / 2;
+}
+
+void add(Heap* heap, int n) {
+    if (heap->tail >= (heap->capacity - 1)) {
+        printf("Heap is full. Resizing...\n");
+        heap->capacity *= 2;
+        heap->heap = (int*)realloc(heap->heap, heap->capacity * sizeof(int));
+    }
+
+    heap->tail += 1;
+    heap->heap[heap->tail] = n;
+    
+    int i = heap->tail;
+    while (i > 0 && heap->heap[parent(i)] < heap->heap[i]) {
+        int aux = heap->heap[i];
+        heap->heap[i] = heap->heap[parent(i)];
+        heap->heap[parent(i)] = aux;
+        i = parent(i);
     }
 }
 
-void insert(struct Heap* heap, int value) {
-    if (heap->size >= MAX_SIZE) {
-        printf("Heap is full. Cannot insert any more elements.\n");
+int removeValue(Heap* heap) {
+    if (isEmpty(heap)) {
+        printf("Heap is empty.\n");
+        exit(1);
+    }
+
+    int element = heap->heap[0];
+    heap->heap[0] = heap->heap[heap->tail];
+    heap->tail -= 1;
+
+    heapify(heap, 0);
+
+    return element;
+}
+
+void heapify(Heap* heap, int index) {
+    if (index > parent(heap->tail))
         return;
-    }
-    heap->elements[heap->size] = value;
-    heapifyUp(heap, heap->size);
-    heap->size++;
-}
 
-void heapifyDown(struct Heap* heap, int index) {
-    int left = 2 * index + 1;
-    int right = 2 * index + 2;
-    int largest = index;
+    int leftIndex = left(index);
+    int rightIndex = right(index);
+    int maxIndex = index;
 
-    if (left < heap->size && heap->elements[left] > heap->elements[largest])
-        largest = left;
-    if (right < heap->size && heap->elements[right] > heap->elements[largest])
-        largest = right;
+    if (leftIndex <= heap->tail && heap->heap[leftIndex] > heap->heap[maxIndex])
+        maxIndex = leftIndex;
 
-    if (largest != index) {
-        swap(&heap->elements[index], &heap->elements[largest]);
-        heapifyDown(heap, largest);
+    if (rightIndex <= heap->tail && heap->heap[rightIndex] > heap->heap[maxIndex])
+        maxIndex = rightIndex;
+
+    if (maxIndex != index) {
+        int aux = heap->heap[index];
+        heap->heap[index] = heap->heap[maxIndex];
+        heap->heap[maxIndex] = aux;
+        heapify(heap, maxIndex);
     }
 }
 
-int removeValue(struct Heap* heap, int value) {
-    if (heap->size == 0) {
-        printf("Heap está vazio\n");
-        return -1;
-    }
-    
-    // Procurar o valor no heap
-    int index = -1;
-    for (int i = 0; i < heap->size; i++) {
-        if (heap->elements[i] == value) {
-            index = i;
-            break;
-        }
-    }
-    
-    if (index == -1) {
-        printf("Valor não encontrado no heap\n");
-        return -1;
-    }
-    
-    int removedValue = heap->elements[index];
-    
-    // Substituir o valor pelo último elemento do heap
-    heap->elements[index] = heap->elements[heap->size - 1];
-    heap->size--;
-    
-    // Reorganizar o heap
-    heapifyDown(heap, index);
-    
-    return removedValue;
-}
-
-void printHeap(struct Heap* heap) {
-    printf("\nElementos do heap: ");
-    for (int i = 0; i < heap->size; i++) {
-        printf("%d ", heap->elements[i]);
+void printHeap(Heap* heap) {
+    printf("Heap elements: ");
+    for (int i = 0; i <= heap->tail; i++) {
+        printf("%d ", heap->heap[i]);
     }
     printf("\n");
 }

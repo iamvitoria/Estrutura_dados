@@ -1,19 +1,20 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-#define MAX_SIZE 100
+typedef struct {
+    int* heap;
+    int tail;
+    int capacity;
+} Heap;
 
-struct Heap {
-    int elements[MAX_SIZE];
-    int size;
-};
+Heap* createHeap(int capacity);
+int isEmpty(Heap* heap);
+int left(int index);
+int right(int index);
+int parent(int index);
+void add(Heap* heap, int n);
+int removeValue(Heap* heap);
+void heapify(Heap* heap, int index);
+void printHeap(Heap* heap);
 
-struct Heap* createHeap();
-void swap(int* a, int* b);
-void heapifyUp(struct Heap* heap, int index);
-void insert(struct Heap* heap, int value);
-void heapifyDown(struct Heap* heap, int index);
-int removeValue(struct Heap* heap, int value);
-void printHeap(struct Heap* heap);
-
-#endif
+#endif /* HEAP_H */
