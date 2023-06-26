@@ -124,13 +124,35 @@ void heapify(Heap* heap, int index) {
     }
 }
 
-void printHeap(Heap* heap) {
-    printf("\nElementos do heap: "); // Imprime a mensagem inicial
-    
-    // Percorre os elementos do heap a partir da raiz até o último elemento
-    for (int i = 0; i <= heap->tail; i++) {
-        printf("%d ", heap->heap[i]); // Imprime o valor do elemento
+void printHeapTraversal(Heap* heap, int index, int traversalOrder) {
+    if (index <= heap->tail) {
+        if (traversalOrder == 1) {
+            printf("%d ", heap->heap[index]); // Pré-ordem
+            printHeapTraversal(heap, left(index), traversalOrder);
+            printHeapTraversal(heap, right(index), traversalOrder);
+        } else if (traversalOrder == 2) {
+            printHeapTraversal(heap, left(index), traversalOrder);
+            printf("%d ", heap->heap[index]); // Em ordem
+            printHeapTraversal(heap, right(index), traversalOrder);
+        } else if (traversalOrder == 3) {
+            printHeapTraversal(heap, left(index), traversalOrder);
+            printHeapTraversal(heap, right(index), traversalOrder);
+            printf("%d ", heap->heap[index]); // Pós-ordem
+        }
     }
+}
+
+// Função de impressão em pré-ordem, em ordem e pós-ordem
+void printHeap(Heap* heap) {
+    printf("\nImpressão em pré-ordem: ");
+    printHeapTraversal(heap, 0, 1);
+    printf("\n");
     
-    printf("\n"); // Imprime uma quebra de linha no final
+    printf("Impressão em ordem: ");
+    printHeapTraversal(heap, 0, 2);
+    printf("\n");
+    
+    printf("Impressão em pós-ordem: ");
+    printHeapTraversal(heap, 0, 3);
+    printf("\n");
 }

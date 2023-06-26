@@ -15,6 +15,7 @@ int parent(int index);
 void add(Heap* heap, int n);
 int removeValue(Heap* heap, int num);
 void heapify(Heap* heap, int index);
+void printHeapTraversal(Heap* heap, int index, int traversalOrder);
 void printHeap(Heap* heap);
 
 #endif /* HEAP_H */
