@@ -19,7 +19,7 @@ int left(int index) {
 }
 
 int right(int index) {
-    return 2 * (index + 1);
+    return 2 * index + 2;
 }
 
 int parent(int index) {
