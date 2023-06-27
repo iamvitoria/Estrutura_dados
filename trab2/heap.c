@@ -55,42 +55,6 @@ void add(Heap* heap, int n) {
     }
 }
 
-int removeValue(Heap* heap, int num) {
-    // Verifica se o heap está vazio
-    if (isEmpty(heap)) {
-        printf("Heap esta vazio.\n");
-        exit(1);
-    }
-
-    // Procura o índice do elemento a ser removido
-    int index = -1;
-    for (int i = 0; i <= heap->tail; i++) {
-        if (heap->heap[i] == num) {
-            index = i;
-            break;
-        }
-    }
-    
-    // Se o elemento não foi encontrado no heap, retorna -1
-    if (index == -1) {
-        printf("Elemento nao encontrado no heap.\n");
-        return -1;
-    }
-
-    // Armazena o valor do elemento a ser removido
-    int element = heap->heap[index];
-    
-    // Substitui o elemento a ser removido pelo último elemento do heap
-    heap->heap[index] = heap->heap[heap->tail];
-    heap->tail -= 1;
-
-    // Realiza o ajuste do heap para manter a propriedade de heap máximo
-    heapify(heap, index);
-
-    // Retorna o elemento removido
-    return element;
-}
-
 void heapify(Heap* heap, int index) {
     // Verifica se o índice está além do pai do último elemento do heap
     // Caso esteja, retorna, pois não há mais elementos para ajustar
@@ -124,6 +88,27 @@ void heapify(Heap* heap, int index) {
     }
 }
 
+int removeMax(Heap* heap) {
+    // Verifica se o heap está vazio
+    if (isEmpty(heap)) {
+        printf("Heap está vazio.\n");
+        exit(1);
+    }
+
+    // Armazena o valor máximo (no topo do heap)
+    int max = heap->heap[0];
+
+    // Substitui o valor máximo pelo último elemento do heap
+    heap->heap[0] = heap->heap[heap->tail];
+    heap->tail -= 1;
+
+    // Realiza o ajuste do heap para manter a propriedade de heap máximo
+    heapify(heap, 0);
+
+    // Retorna o valor máximo removido
+    return max;
+}
+
 void printHeapTraversal(Heap* heap, int index, int traversalOrder) {
     if (index <= heap->tail) {
         if (traversalOrder == 1) {
@@ -144,15 +129,15 @@ void printHeapTraversal(Heap* heap, int index, int traversalOrder) {
 
 // Função de impressão em pré-ordem, em ordem e pós-ordem
 void printHeap(Heap* heap) {
-    printf("\nImpressão em pré-ordem: ");
+    printf("\nImpressao em pre-ordem: ");
     printHeapTraversal(heap, 0, 1);
     printf("\n");
     
-    printf("Impressão em ordem: ");
+    printf("Impressao em ordem: ");
     printHeapTraversal(heap, 0, 2);
     printf("\n");
     
-    printf("Impressão em pós-ordem: ");
+    printf("Impressão em pos-ordem: ");
     printHeapTraversal(heap, 0, 3);
     printf("\n");
 }

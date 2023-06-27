@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]) {
     int capacidade, num;
-    printf("Digite a capacidade inicial do heap: \n");
+    printf("Digite a capacidade inicial do heap: ");
     scanf("%d", &capacidade);
 
     Heap* heap = createHeap(capacidade);
@@ -22,10 +22,8 @@ int main(int argc, char *argv[]) {
 
     printHeap(heap);
 
-    printf("\nDigite o elemento a ser removido: ");
-    scanf("%d", &num);
-    int max = removeValue(heap, num);
-    printf("\nElemento removido: %d\n", max);
+    int max = removeMax(heap);
+    printf("\nMaior elemento removido: %d\n", max);
 
     printHeap(heap);
 

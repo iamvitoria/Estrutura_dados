@@ -13,7 +13,7 @@ int left(int index);
 int right(int index);
 int parent(int index);
 void add(Heap* heap, int n);
-int removeValue(Heap* heap, int num);
+int removeMax(Heap* heap);
 void heapify(Heap* heap, int index);
 void printHeapTraversal(Heap* heap, int index, int traversalOrder);
 void printHeap(Heap* heap);
