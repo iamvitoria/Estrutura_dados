@@ -20,12 +20,12 @@ int main(int argc, char *argv[]) {
         scanf(" %c", &escolha);
     } while (escolha == 's' || escolha == 'S');
 
-    printHeap(heap);
+    printHeap(heap, capacidade);
 
     int max = removeMax(heap);
     printf("\nMaior elemento removido: %d\n", max);
 
-    printHeap(heap);
+    printHeap(heap, capacidade);
 
     return 0;
 }

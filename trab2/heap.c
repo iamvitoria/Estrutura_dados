@@ -109,6 +109,13 @@ int removeMax(Heap* heap) {
     return max;
 }
 
+/*void printHeap(Heap* heap, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", heap->heap[i]);
+    }
+    printf("\n");
+}*/
+
 void printHeapTraversal(Heap* heap, int index, int traversalOrder) {
     if (index <= heap->tail) {
         if (traversalOrder == 1) {
