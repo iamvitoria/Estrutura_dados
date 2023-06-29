@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "heap.h"
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
     int capacidade, num;
     printf("Digite a capacidade inicial do heap: ");
     scanf("%d", &capacidade);
@@ -20,12 +20,12 @@ int main(int argc, char *argv[]) {
         scanf(" %c", &escolha);
     } while (escolha == 's' || escolha == 'S');
 
-    printHeap(heap, capacidade);
+    printHeap(heap);
 
     int max = removeMax(heap);
     printf("\nMaior elemento removido: %d\n", max);
 
-    printHeap(heap, capacidade);
+    printHeap(heap);
 
     return 0;
 }
