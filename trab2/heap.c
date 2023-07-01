@@ -108,3 +108,24 @@ void printHeap(Heap* heap) {
     }
     printf("\n");
 }
+
+int consulta_heap(Heap* h, int n, int* pos) {
+    if (h == NULL || isEmpty(h)) {
+        fprintf(stdout, "Nao e possível procurar elemento em heap vazio.\n");
+        return 0;
+    }
+
+    for (int i = 0; i <= h->tail; i++) {
+        if (n == h->heap[i]) {
+            *pos = i;
+            return 1;
+        }
+    }
+
+    return 0;
+}
+
+void libera_heap(Heap* h) {
+    free(h->heap);
+    free(h);
+}

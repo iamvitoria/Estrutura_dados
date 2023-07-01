@@ -15,6 +15,8 @@ int parent(int index);
 void add(Heap* heap, int n);
 int removeMax(Heap* heap);
 void heapify(Heap* heap, int index);
-void printHeap(Heap* h);
+void printHeap(Heap* heap);
+int consulta_heap(Heap* h, int n, int* pos);
+void libera_heap(Heap* h);
 
 #endif
