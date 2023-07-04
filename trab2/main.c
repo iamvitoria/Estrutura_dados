@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
         scanf(" %c", &escolha);
     } while (escolha == 's' || escolha == 'S');
 
-    printHeap(heap);
+    printHeapWithChildren(heap);
     
     printf("\nDigite um valor para consultar no heap: ");
     scanf("%d", &val);
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
     int max = removeMax(heap);
     printf("\nMaior elemento removido: %d\n", max);
 
-    printHeap(heap);
-	libera_heap(heap);
+    printHeapWithChildren(heap);
+    libera_heap(heap);
     return 0;
 }

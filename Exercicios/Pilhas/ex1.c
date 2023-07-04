@@ -34,16 +34,15 @@ int pilha_vazia(Pilha* p){
 }
 
 void imprime_pilha(Pilha* p){
-	Lista* q;
-	
-	printf("\nLista: ");
-	if(!pilha_vazia(p)){
-		for(q=p->prim; q!=NULL; q=q->prox){
-			printf("%.2f, ", q->info);
+	Lista *l;
+	if(pilha_vazia(p)){
+		for(l=p->prim; l!=NULL; l=l->prox){
+			printf("%.2f", l->info);
 		}
 	}else{
-		printf("\nPilha vazia");
+		printf("\npilha vazia");
 	}
+	
 }
 
 int main(){

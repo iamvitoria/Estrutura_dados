@@ -29,7 +29,7 @@ int parent(int index) {
 void add(Heap* heap, int n) {
     // Verifica se o heap está cheio
     if (heap->tail >= (heap->capacity - 1)) {
-        printf("Heap está cheio...\n");
+        printf("Heap esta cheio\n");
 
         // Dobra a capacidade do heap
         heap->capacity *= 2;
@@ -58,7 +58,7 @@ void add(Heap* heap, int n) {
 int removeMax(Heap* heap) {
     // Verifica se o heap está vazio
     if (isEmpty(heap)) {
-        printf("Heap está vazio.\n");
+        printf("Heap esta vazio.\n");
         exit(1);
     }
 
@@ -102,11 +102,32 @@ void printHeap(Heap* heap) {
         return;
     }
 
-    printf("Fila em ordem de prioridade maxima: ");
+    printf("\nFila em ordem de prioridade máxima: ");
     for (int i = 0; i <= heap->tail; i++) {
         printf("%d ", heap->heap[i]);
     }
     printf("\n");
+}
+
+void printHeapWithChildren(Heap* heap) {
+    if (heap == NULL || isEmpty(heap)) {
+        printf("Heap vazio.\n");
+        return;
+    }
+
+    printf("Fila em ordem de prioridade maxima (com filhos):\n");
+    for (int i = 0; i <= heap->tail; i++) {
+        printf("No: %d\n", heap->heap[i]);
+        int leftIndex = left(i);
+        int rightIndex = right(i);
+
+        if (leftIndex <= heap->tail)
+            printf("  Filho esquerdo: %d\n", heap->heap[leftIndex]);
+        if (rightIndex <= heap->tail)
+            printf("  Filho direito: %d\n", heap->heap[rightIndex]);
+
+        printf("\n");
+    }
 }
 
 int consulta_heap(Heap* h, int n, int* pos) {
