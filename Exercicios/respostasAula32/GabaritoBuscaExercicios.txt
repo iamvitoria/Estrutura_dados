@@ -1,0 +1,88 @@
+Gabarito:
+Foram priorizados os vertices de menor valor (menor letra): 
+
+Profundidade pre ordem: A B C F J D E I K
+Largura pre ordem: A B D E K C F I J
+
+Pos ordem: ver detalhamento abaixo.
+
+Considere aqui que os vertices de A a K foram substituidos por 0 a 8 (na sequencia):
+
+Busca em profundidade
+CINZA: Visitando o vertice 0 em pre-ordem
+CINZA: Visitando o vertice 1 em pre-ordem
+CINZA: Visitando o vertice 2 em pre-ordem
+
+PRETO: Visitando o vertice 2 em pos-ordem
+CINZA: Visitando o vertice 5 em pre-ordem
+CINZA: Visitando o vertice 7 em pre-ordem
+
+PRETO: Visitando o vertice 7 em pos-ordem
+
+PRETO: Visitando o vertice 5 em pos-ordem
+
+PRETO: Visitando o vertice 1 em pos-ordem
+CINZA: Visitando o vertice 3 em pre-ordem
+
+PRETO: Visitando o vertice 3 em pos-ordem
+CINZA: Visitando o vertice 4 em pre-ordem
+CINZA: Visitando o vertice 6 em pre-ordem
+
+PRETO: Visitando o vertice 6 em pos-ordem
+CINZA: Visitando o vertice 8 em pre-ordem
+
+PRETO: Visitando o vertice 8 em pos-ordem
+
+PRETO: Visitando o vertice 4 em pos-ordem
+
+PRETO: Visitando o vertice 0 em pos-ordem
+
+
+Busca em largura
+Inserindo 0
+CINZA: Visitando o vertice 0 em pre-ordem
+Removendo 0
+CINZA: Visitando o vertice 1 em pre-ordem
+Inserindo 1
+CINZA: Visitando o vertice 3 em pre-ordem
+Inserindo 3
+CINZA: Visitando o vertice 4 em pre-ordem
+Inserindo 4
+CINZA: Visitando o vertice 8 em pre-ordem
+Inserindo 8
+
+PRETO: Visitando o vertice 0 em pos-ordem
+Removendo 1
+CINZA: Visitando o vertice 2 em pre-ordem
+Inserindo 2
+CINZA: Visitando o vertice 5 em pre-ordem
+Inserindo 5
+
+PRETO: Visitando o vertice 1 em pos-ordem
+Removendo 3
+
+PRETO: Visitando o vertice 3 em pos-ordem
+Removendo 4
+CINZA: Visitando o vertice 6 em pre-ordem
+Inserindo 6
+CINZA: Visitando o vertice 7 em pre-ordem
+Inserindo 7
+
+PRETO: Visitando o vertice 4 em pos-ordem
+Removendo 8
+
+PRETO: Visitando o vertice 8 em pos-ordem
+Removendo 2
+
+PRETO: Visitando o vertice 2 em pos-ordem
+Removendo 5
+
+PRETO: Visitando o vertice 5 em pos-ordem
+Removendo 6
+
+PRETO: Visitando o vertice 6 em pos-ordem
+Removendo 7
+
+PRETO: Visitando o vertice 7 em pos-ordem
+Press any key to continue . . .
+

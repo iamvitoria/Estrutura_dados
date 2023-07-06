@@ -115,7 +115,7 @@ void printHeapWithChildren(Heap* heap) {
         return;
     }
 
-    printf("Fila em ordem de prioridade maxima (com filhos):\n");
+    printf("\nFila em ordem de prioridade maxima (com filhos):\n");
     for (int i = 0; i <= heap->tail; i++) {
         printf("No: %d\n", heap->heap[i]);
         int leftIndex = left(i);

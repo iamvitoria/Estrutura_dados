@@ -1,0 +1,40 @@
+Questao 1)
+
+void separaAlunos (Fila* f, Pilha* aprovados, Fila* reprovados)
+{
+  	Lista* p;
+  	for (p=f->ini; p!=NULL; p=p->prox)
+  	{
+		Lista* n = (Lista*) malloc(sizeof(Lista));
+    		n->matricula = p->matricula; 
+    		n->nota=p->nota;
+    		n->prox = NULL; 
+  		if (p->nota>=7)//aprovado, insere na pilha
+  		{
+    			n->prox = aprovados->prim;
+        		aprovados->prim = n;        
+		}
+		else//reprovado, insere na fila
+		{
+    			if (reprovados->fim != NULL) /* verifica se lista não estava vazia */
+        			reprovados->fim->prox = n;
+    			else /* fila estava vazia */
+        			reprovados->ini = n;
+    			reprovados->fim = n; /* fila aponta para novo elemento */
+		}
+  	}//for
+}
+
+Questao 2)
+
+2 1 6 3
+
+Questao 3)
+
+a) ver imagem
+
+b) ver imagem
+
+c) ver imagem
+
+d) 0 2 3 4 5 1

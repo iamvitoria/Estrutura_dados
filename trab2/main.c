@@ -3,32 +3,30 @@
 #include "heap.h"
 
 int main(int argc, char* argv[]) {
-    int capacidade, num, val, pos;
+    int capacidade, num, val, pos, cont=0;
     
     printf("Esse eh um programa de heap Maximo!\n\n");
     printf("Digite a capacidade inicial do heap: ");
     scanf("%d", &capacidade);
+    cont = capacidade;
     printf("\n");
 
     Heap* heap = createHeap(capacidade);
-
-    char escolha;
 
     do {
         printf("Digite um valor para inserir no heap: ");
         scanf("%d", &num);
         add(heap, num);
+        cont--;
 
-        printf("Deseja inserir mais valores? (s/n): ");
-        scanf(" %c", &escolha);
-    } while (escolha == 's' || escolha == 'S');
+    } while (cont!=0);
 
     printHeapWithChildren(heap);
     
     printf("\nDigite um valor para consultar no heap: ");
     scanf("%d", &val);
     consulta_heap(heap, val, &pos);
-    printf("Posicao do valor %d no heap: %d\n", val, pos);
+    printf("Posicao do valor %d no heap: %d\n", val, pos+1);
 
     int max = removeMax(heap);
     printf("\nMaior elemento removido: %d\n", max);
